@@ -61,15 +61,14 @@ export function Navbar() {
 
                 {/* CTA */}
                 <div className="flex items-center gap-4 shrink-0">
-                    <Link href="/login" className="hidden sm:block text-xs font-bold text-black hover:underline uppercase tracking-wide">
-                        Log in
+                    <Link href="/login">
+                        <Button size="sm" className={`rounded-full h-10 px-6 text-xs font-bold uppercase tracking-wide border-2 border-black shadow-neo hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all ${isScrolled
+                            ? "bg-black text-white hover:bg-emerald-400 hover:text-black"
+                            : "bg-white text-black hover:bg-black hover:text-white"
+                            }`}>
+                            Start
+                        </Button>
                     </Link>
-                    <Button size="sm" className={`rounded-full h-10 px-6 text-xs font-bold uppercase tracking-wide border-2 border-black shadow-neo hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all ${isScrolled
-                        ? "bg-black text-white hover:bg-emerald-400 hover:text-black"
-                        : "bg-white text-black hover:bg-black hover:text-white"
-                        }`}>
-                        Start
-                    </Button>
                 </div>
             </div>
         </motion.nav>

@@ -3,6 +3,7 @@ import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
+
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
