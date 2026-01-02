@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { AuthProvider } from "@/components/providers/auth-context";
+import { AlertProvider } from "@/components/providers/alert-context";
 
 
 const playfair = Playfair_Display({
@@ -29,7 +31,11 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${jakarta.variable} antialiased font-sans bg-background text-foreground`}
       >
-        <SmoothScroll>{children}</SmoothScroll>
+        <AuthProvider>
+          <AlertProvider>
+            <SmoothScroll>{children}</SmoothScroll>
+          </AlertProvider>
+        </AuthProvider>
       </body>
     </html>
   );
