@@ -91,6 +91,7 @@ export function Testimonials() {
                                             alt={review.name}
                                             fill
                                             className="object-cover"
+                                            sizes="40px"
                                         />
                                     </div>
                                     <div>
@@ -134,6 +135,7 @@ export function Testimonials() {
                                             alt={review.name}
                                             fill
                                             className="object-cover"
+                                            sizes="40px"
                                         />
                                     </div>
                                     <div>

@@ -19,11 +19,13 @@ export function HeroSection() {
                 {/* Card 1: Visual/Image (Back Layer) */}
                 <div className="relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2.5rem] border-2 border-black/80 shadow-neo bg-white overflow-hidden z-0">
                     <Image
-                        src="/hybrid-hero.png"
+                        src={"https://hoftnrgwjy6klsjj.public.blob.vercel-storage.com/sys/hybrid-hero.png"}
                         alt="Hybrid Tutoring: Online and In-Person"
                         fill
                         className="object-cover"
-                        priority
+                        fetchPriority="high"
+                        unoptimized
+                        loading="eager"
                     />
 
                     {/* Floating Tags for Image Card */}
