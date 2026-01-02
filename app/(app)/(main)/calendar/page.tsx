@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAlert } from "@/components/providers/alert-context";
+import { PageLoader } from "@/components/ui/page-loader";
 
 // Types
 type DayMode = "online" | "offline" | "hybrid" | "half" | "close";
@@ -194,27 +195,11 @@ export default function CalendarPage() {
     };
 
     if (loading) {
-        return <div className="flex items-center justify-center h-full w-full p-20"><Loader2 className="animate-spin w-10 h-10 text-gray-400" /></div>
+        return <PageLoader />
     }
 
     return (
         <div className="w-full max-w-7xl mx-auto p-4 md:p-8 space-y-8 pb-20">
-            <div className="flex items-center justify-between">
-                <div>
-                    <h1 className="text-3xl md:text-5xl font-serif font-black tracking-tight mb-2">My Availability</h1>
-                    <p className="text-gray-500 font-medium">Manage your weekly schedule for the next 7 days.</p>
-                </div>
-                <Button
-                    onClick={saveSchedule}
-                    disabled={saving}
-                    className="rounded-full px-8 py-6 font-black text-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all border-2 border-black bg-yellow-400 text-black hover:bg-yellow-300"
-                >
-                    {saving ? <Loader2 className="animate-spin mr-2" /> : <Save className="mr-2" />}
-                    Save Changes
-                </Button>
-            </div>
-
-
 
             {/* Render based on Rolling 7 Days */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -238,6 +223,18 @@ export default function CalendarPage() {
                         />
                     );
                 })}
+            </div>
+
+            <div className="flex justify-end pt-6 border-t-2 border-gray-100 sticky bottom-0 bg-white/80 backdrop-blur-md pb-4">
+                <Button
+                    type="button"
+                    onClick={saveSchedule}
+                    disabled={saving}
+                    className="h-14 px-8 rounded-2xl font-bold text-base bg-black text-white hover:scale-105 transition-all shadow-neo hover:shadow-none hover:bg-emerald-500 hover:text-black hover:border-black border-2 border-transparent"
+                >
+                    {saving ? "Saving..." : "Save Changes"}
+                    {!saving && <Save className="ml-2 h-5 w-5" />}
+                </Button>
             </div>
         </div>
     );

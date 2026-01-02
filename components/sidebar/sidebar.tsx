@@ -33,17 +33,18 @@ export function Sidebar({ userDoc }: SidebarProps) {
             allowedRoles: ['student'],
         },
         {
-            href: "/profile",
-            label: "Profile",
-            icon: User,
-            allowedRoles: ['student', 'tutor'],
-        },
-        {
             label: "Calendar",
             href: "/calendar",
             icon: Calendar,
             allowedRoles: ['tutor'],
         },
+        {
+            href: "/profile",
+            label: "Profile",
+            icon: User,
+            allowedRoles: ['student', 'tutor'],
+        }
+
     ].filter(item => item.allowedRoles.includes(userRole));
 
     return (
