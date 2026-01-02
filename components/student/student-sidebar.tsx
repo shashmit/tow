@@ -1,6 +1,6 @@
 "use client";
 
-import { SUBJECTS, METHODS, TeachingMethod } from "@/lib/mock-tutors";
+import { SUBJECTS, METHODS } from "@/lib/tutors";
 
 interface StudentSidebarProps {
     selectedSubject: string;

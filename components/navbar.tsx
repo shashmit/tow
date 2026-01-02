@@ -39,8 +39,8 @@ export function Navbar() {
             >
 
                 {/* Logo */}
-                <Link href="/" className="font-serif text-2xl font-black text-black tracking-tight hover:underline decoration-4 underline-offset-4 shrink-0">
-                    Tow.
+                <Link href="/" className="font-serif text-3xl font-black text-black tracking-tight hover:underline decoration-4 underline-offset-4 shrink-0">
+                    <span className="text-yellow-400">.</span>Tow<span className="text-purple-400">.</span>
                 </Link>
 
                 {/* Desktop Links */}

@@ -1,5 +1,5 @@
 import { Monitor, MapPin, Users } from "lucide-react";
-import { TeachingMethod } from "@/lib/mock-tutors";
+import { TeachingMethod } from "@/lib/tutors";
 
 interface MethodBadgeProps {
     method: TeachingMethod;

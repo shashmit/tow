@@ -115,7 +115,7 @@ export function Testimonials() {
                     animate={{ x: "0%" }}
                     transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
                 >
-                    {[...reviews.reverse(), ...reviews].map((review, i) => (
+                    {[...[...reviews].reverse(), ...[...reviews].reverse()].map((review, i) => (
                         <Card key={i} className={`w-[400px] shrink-0 border-2 border-black shadow-neo rounded-2xl overflow-hidden hover:shadow-[8px_8px_0px_0px_black] transition-all hover:-translate-y-1 ${review.bg}`}>
                             <CardContent className="p-8 flex flex-col h-full">
                                 <div className="flex justify-between items-start mb-6">
