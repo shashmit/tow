@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
         "/api/auth/session",
         "/api/auth/logout",
         "/global.css",
-        "/favicon.ico",
+        "/logo.ico",
     ];
 
     // Also exclude Next.js internals and assets
@@ -88,6 +88,6 @@ export const config = {
          * - _next/image (image optimization files)
          * - favicon.ico (favicon file)
          */
-        '/((?!_next/static|_next/image|favicon.ico).*)',
+        '/((?!_next/static|_next/image|logo.ico).*)',
     ],
 };
