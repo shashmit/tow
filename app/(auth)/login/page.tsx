@@ -139,17 +139,17 @@ export default function LoginPage() {
                 </Link>
             </div>
 
-            <div className="flex-1 flex items-center justify-center p-4 md:p-8 z-10">
+            <div className="flex-1 flex items-center justify-center p-4 pt-24 md:p-8 z-10">
                 {/* Main Card Container */}
-                <div className="w-full max-w-[1400px] bg-white border-2 border-black rounded-[2rem] shadow-neo-xl overflow-hidden flex flex-col md:flex-row relative min-h-[800px]">
+                <div className="w-full max-w-[1400px] bg-white border-2 border-black rounded-[2rem] shadow-neo-xl overflow-hidden flex flex-col md:flex-row relative md:min-h-[800px]">
 
                     {/* Animated Layout Container */}
-                    <div className="absolute inset-0 flex flex-col md:flex-row w-full h-full">
+                    <div className="relative md:absolute md:inset-0 flex flex-col md:flex-row w-full h-full">
 
                         {/* Left Panel (Image/Content) */}
                         <motion.div
                             layout
-                            className={`w-full md:w-1/2 h-full relative overflow-hidden border-b-2 md:border-b-0 md:border-r-2 border-black flex items-center justify-center p-12 transition-colors duration-500 ease-in-out
+                            className={`w-full md:w-1/2 min-h-[300px] md:min-h-full relative overflow-hidden border-b-2 md:border-b-0 md:border-r-2 border-black flex items-center justify-center p-8 md:p-12 transition-colors duration-500 ease-in-out
                 ${isTutor
                                     ? "md:order-2 md:border-l-2 md:border-r-0 bg-purple-400"
                                     : "md:order-1 bg-yellow-400"
@@ -158,7 +158,7 @@ export default function LoginPage() {
                             transition={{ type: "spring", stiffness: 180, damping: 24 }}
                         >
                             {/* Pulsating Dot Animation */}
-                            <div className="absolute top-12 right-12">
+                            <div className="absolute top-6 right-6 md:top-12 md:right-12">
                                 <div className="relative flex items-center justify-center">
                                     <div className={`absolute w-full h-full rounded-full animate-ping opacity-75 ${isTutor ? 'bg-white' : 'bg-black'}`}></div>
                                     <div className={`relative w-4 h-4 rounded-full ${isTutor ? 'bg-white' : 'bg-black'}`}></div>
@@ -174,12 +174,12 @@ export default function LoginPage() {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -20 }}
                                         transition={{ duration: 0.5, ease: "easeOut" }}
-                                        className="text-center space-y-8 max-w-lg relative z-10 px-8"
+                                        className="text-center space-y-4 md:space-y-8 max-w-lg relative z-10 px-4 md:px-8"
                                     >
-                                        <h2 className="text-6xl font-black tracking-tighter text-white leading-[0.9]">
+                                        <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-white leading-[0.9]">
                                             Share Your<br />Wisdom.
                                         </h2>
-                                        <p className="font-medium text-xl text-white/90 leading-relaxed">
+                                        <p className="font-medium text-lg md:text-xl text-white/90 leading-relaxed">
                                             "Teaching is the greatest act of optimism." <br /> Join the community.
                                         </p>
                                     </motion.div>
@@ -190,12 +190,12 @@ export default function LoginPage() {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -20 }}
                                         transition={{ duration: 0.5, ease: "easeOut" }}
-                                        className="text-center space-y-8 max-w-lg relative z-10 px-8"
+                                        className="text-center space-y-4 md:space-y-8 max-w-lg relative z-10 px-4 md:px-8"
                                     >
-                                        <h2 className="text-6xl font-black tracking-tighter text-black leading-[0.9]">
+                                        <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-black leading-[0.9]">
                                             Start Your<br />Journey.
                                         </h2>
-                                        <p className="font-medium text-xl text-black/80 leading-relaxed">
+                                        <p className="font-medium text-lg md:text-xl text-black/80 leading-relaxed">
                                             The expert you need is just one click away. <br /> Learn faster, together.
                                         </p>
                                     </motion.div>
@@ -210,7 +210,7 @@ export default function LoginPage() {
                         {/* Right Panel (Login Form) */}
                         <motion.div
                             layout
-                            className={`w-full md:w-1/2 h-full bg-white flex flex-col justify-center p-12 md:p-24 lg:p-32 relative
+                            className={`w-full md:w-1/2 min-h-[500px] md:min-h-full bg-white flex flex-col justify-center p-6 md:p-24 lg:p-32 relative
                  ${isTutor ? "md:order-1" : "md:order-2"}
               `}
                             transition={{ type: "spring", stiffness: 180, damping: 24 }}
