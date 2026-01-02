@@ -7,6 +7,7 @@ import { SUBJECTS, METHODS, TeachingMethod, Tutor } from "@/lib/tutors";
 import { TutorCard } from "@/components/student/tutor-card";
 import { useDashboard } from "../layout";
 import { Loader2 } from "lucide-react";
+import { PageLoader } from "@/components/ui/page-loader";
 
 export default function TutorsPage() {
     const { userDoc } = useDashboard();
@@ -79,15 +80,10 @@ export default function TutorsPage() {
     // If user is a tutor, they shouldn't really see this page, but if they navigate here manually:
     if (userDoc?.role === "tutor") {
         redirect("/dashboard");
-        return <div>Access Denied</div>;
     }
 
     if (isLoading) {
-        return (
-            <div className="flex justify-center items-center h-64">
-                <Loader2 className="w-8 h-8 animate-spin text-gray-500" />
-            </div>
-        );
+        return <PageLoader />;
     }
 
     if (error) {

@@ -29,13 +29,13 @@ export function HeroSection() {
                     />
 
                     {/* Floating Tags for Image Card */}
-                    <div className="absolute top-8 left-8 bg-white/90 backdrop-blur border-2 border-black px-4 py-2 rounded-lg shadow-neo-sm flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-red-500 fill-red-500" />
-                        <span className="text-xs font-bold uppercase tracking-wide">At your home</span>
+                    <div className="absolute top-4 left-4 md:top-8 md:left-8 bg-white/90 backdrop-blur border-2 border-black px-3 py-1.5 md:px-4 md:py-2 rounded-lg shadow-neo-sm flex items-center gap-1.5 md:gap-2">
+                        <MapPin className="w-3 h-3 md:w-4 md:h-4 text-red-500 fill-red-500" />
+                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">At your home</span>
                     </div>
-                    <div className="absolute top-8 right-8 bg-black/90 backdrop-blur text-white px-4 py-2 rounded-lg border-2 border-black shadow-neo-sm flex items-center gap-2">
-                        <Wifi className="w-4 h-4 text-green-400" />
-                        <span className="text-xs font-bold uppercase tracking-wide">Or anywhere else</span>
+                    <div className="absolute top-4 right-4 md:top-8 md:right-8 bg-black/90 backdrop-blur text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg border-2 border-black shadow-neo-sm flex items-center gap-1.5 md:gap-2">
+                        <Wifi className="w-3 h-3 md:w-4 md:h-4 text-green-400" />
+                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Or anywhere else</span>
                     </div>
                 </div>
 

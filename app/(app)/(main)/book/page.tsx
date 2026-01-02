@@ -130,13 +130,7 @@ export default function BookSessionPage() {
 
     return (
         <div className="max-w-6xl mx-auto pb-10">
-            {/* Header */}
-            <div className="mb-8">
-                <h1 className="text-3xl font-black mb-2">Book a Session</h1>
-                <p className="text-gray-500 font-medium max-w-2xl">
-                    Select a date to see who is available, then choose a subject and tutor.
-                </p>
-            </div>
+            {/* Header moved to layout */}
 
             <div className="flex flex-col gap-8">
 

@@ -7,6 +7,7 @@ import { CalendarView, DaySchedule } from "@/components/booking/calendar-view";
 import { ChevronLeft, Calendar as CalendarIcon, Clock, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import { useDashboard } from "../../layout";
+import { PageLoader } from "@/components/ui/page-loader";
 import { Tutor } from "@/lib/tutors";
 
 
@@ -116,7 +117,7 @@ export default function BookSessionPage() {
     };
 
     if (loading) {
-        return <div className="flex h-screen items-center justify-center">Loading...</div>;
+        return <PageLoader />;
     }
 
     if (!tutor) {

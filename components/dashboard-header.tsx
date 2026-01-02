@@ -31,7 +31,7 @@ export function DashboardHeader({ userDoc, title, subtitle, hideProfile }: Dashb
 
     return (
         <header className="bg-white border-b-2 border-black sticky top-16 md:top-0 z-40">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="px-4 sm:px-6 lg:px-8 py-6">
                 <div className="flex justify-between items-center">
                     <div>
                         <h1 className="text-3xl md:text-4xl font-black text-black">

@@ -95,12 +95,16 @@ export default function DashboardLayout({
                                 ? "Edit Profile"
                                 : pathname === "/tutor"
                                     ? "Browse Tutor"
-                                    : undefined
+                                    : pathname === "/book"
+                                        ? "Book a Session"
+                                        : undefined
                         }
                         subtitle={
                             pathname === "/profile"
                                 ? "Update your personal information"
-                                : undefined
+                                : pathname === "/book"
+                                    ? "Select a date to see who is available, then choose a subject and tutor"
+                                    : undefined
                         }
                     />
                     <main className="flex-1 p-4 sm:p-6 lg:p-8">

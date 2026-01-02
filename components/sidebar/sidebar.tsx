@@ -52,7 +52,7 @@ export function Sidebar({ userDoc }: SidebarProps) {
             <div className="flex flex-col border-r-2 md:border-r-0 md:border-b-2 border-black">
                 <div className="h-16 md:h-[116px] flex items-center justify-center px-4 md:p-6 bg-white w-20 md:w-auto">
                     <h1 className="font-serif text-xl md:text-3xl font-black text-black tracking-tight hover:underline decoration-4 underline-offset-4 shrink-0">
-                        Tow.
+                        <span className="text-yellow-400">.</span>Tow<span className="text-purple-400">.</span>
                     </h1>
                 </div>
             </div>

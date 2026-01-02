@@ -8,7 +8,7 @@ export function Footer() {
             <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-center">
 
                 <Link href="/" className="font-serif text-4xl font-black tracking-tight text-black mb-8 hover:underline decoration-4 underline-offset-4">
-                    Tow.
+                    <span className="text-yellow-400">.</span>Tow<span className="text-purple-400">.</span>
                 </Link>
 
                 <div className="flex flex-wrap justify-center gap-4 mb-12">
