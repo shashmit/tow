@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { CombinedPersonalDetails } from "@/app/(auth)/onboarding/components/personal-details";
 import { RoleSpecific } from "@/app/(auth)/onboarding/components/role-specific";
 import { Button } from "@/components/ui/button";
-import { Save } from "lucide-react";
+import { Save, Camera, Loader2, User } from "lucide-react";
 import { useAlert } from "@/components/providers/alert-context";
 import { PageLoader } from "@/components/ui/page-loader";
 
@@ -28,6 +28,7 @@ export default function ProfilePage() {
         qualification: "",
         educationMode: "",
         learningMode: "",
+        imageUrl: "",
     });
     const [subjects, setSubjects] = useState<string[]>([]);
     const [classLevels, setClassLevels] = useState<string[]>([]);
@@ -56,6 +57,7 @@ export default function ProfilePage() {
                     qualification: data.qualification || "",
                     educationMode: data.educationMode || "",
                     learningMode: data.learningMode || "",
+                    imageUrl: data.imageUrl || "",
                 });
                 setSubjects(data.subjects || []);
                 setClassLevels(data.classLevels || []);
@@ -119,6 +121,7 @@ export default function ProfilePage() {
                         <CombinedPersonalDetails
                             formData={formData}
                             handleInputChange={handleInputChange}
+                            setFormData={setFormData}
                         />
                     </section>
 

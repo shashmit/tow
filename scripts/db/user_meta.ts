@@ -160,6 +160,12 @@ async function setup() {
         "classLevels"
     );
 
+    // Profile Image
+    await ensureAttr(
+        () => databases.createUrlAttribute(dbId!, collectionId!, "imageUrl", false),
+        "imageUrl"
+    );
+
     // Wait a bit for indexing? properties usually ready quickly but indexing takes time.
     // Attributes are async in Appwrite.
 

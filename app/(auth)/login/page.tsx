@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter, useSearchParams } from "next/navigation";
 import { checkEmail as checkEmailStr, login, register, getSession } from "@/lib/auth/client";
 import { useAuth } from "@/components/providers/auth-context";
+import { useAlert } from "@/components/providers/alert-context";
 
 
 export default function LoginPage() {
@@ -29,15 +30,18 @@ export default function LoginPage() {
     const [pending, setPending] = useState(false);
     const [isLoadingSession, setIsLoadingSession] = useState(true); // Start true to check session
 
+    // Use the alert context hook
+    const { showAlert } = useAlert();
+
     // Check for existing session on mount
     useEffect(() => {
         const checkExistingSession = async () => {
             const session = await getSession();
-            if (session.authenticated && !session.isOnboarding) {
-                // User has a full session, redirect to dashboard
+            if (session.authenticated && session.onboardingCompleted) {
+                // User has completed onboarding, redirect to dashboard
                 router.replace("/dashboard");
-            } else if (session.authenticated && session.isOnboarding) {
-                // User has an onboarding token, redirect to onboarding
+            } else if (session.authenticated && !session.onboardingCompleted) {
+                // User hasn't completed onboarding, redirect to onboarding
                 router.replace("/onboarding");
             } else {
                 // No valid session, show login form
@@ -66,12 +70,16 @@ export default function LoginPage() {
                 }
 
                 setFlow("signIn");
+                showAlert("Welcome back! Please enter your password.", "success");
             } else {
                 setFlow("signUp");
+                showAlert("New account! Create a password to get started.", "info");
             }
             setStep("password");
         } catch (err: any) {
-            setError(err.message || "Failed to check email");
+            const errorMsg = err.message || "Failed to check email";
+            setError(errorMsg);
+            showAlert(errorMsg, "error");
         } finally {
             setPending(false);
         }
@@ -84,6 +92,11 @@ export default function LoginPage() {
 
         try {
             if (flow === 'signUp') {
+                if (!agreeToTerms) {
+                    showAlert("Please agree to the Terms of Service and Privacy Policy to continue.", "error");
+                    setPending(false);
+                    return;
+                }
                 await register(formData.email, formData.password, isTutor ? 'tutor' : 'student');
                 // After register, auto login
             }
@@ -91,6 +104,7 @@ export default function LoginPage() {
             const res = await login(formData.email, formData.password);
 
             setIsLoadingSession(true);
+            showAlert(flow === 'signUp' ? "Account created successfully!" : "Login successful!", "success");
 
             // Redirect based on onboarding status
             setTimeout(() => {
@@ -105,7 +119,9 @@ export default function LoginPage() {
             }, 1000);
 
         } catch (err: any) {
-            setError(err.message || "Authentication failed");
+            const errorMsg = err.message || "Authentication failed";
+            setError(errorMsg);
+            showAlert(errorMsg, "error");
             setPending(false);
         }
     };

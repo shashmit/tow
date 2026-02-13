@@ -12,14 +12,6 @@ export async function signSessionJWT(payload: { userId: string; role: string; on
         .sign(secret);
 }
 
-export async function signOnboardingToken(payload: { userId: string; role: string }) {
-    return new SignJWT({ ...payload, type: "onboarding" })
-        .setProtectedHeader({ alg: ALG })
-        .setIssuedAt()
-        .setExpirationTime("15m") // Short lived
-        .sign(secret);
-}
-
 export async function verifyJWT(token: string) {
     try {
         const { payload } = await jwtVerify(token, secret, {

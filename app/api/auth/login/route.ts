@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { Client, Account } from "node-appwrite";
 import { createAdminClient } from "@/lib/appwrite/server";
-import { signSessionJWT, signOnboardingToken } from "@/lib/auth/jwt";
+import { signSessionJWT } from "@/lib/auth/jwt";
 import { env } from "@/lib/env";
 
 export async function POST(request: Request) {
@@ -47,25 +47,8 @@ export async function POST(request: Request) {
             const role = meta.role;
             const isCompleted = meta.onboardingCompleted;
 
-            // 3. Handle Onboarding vs Login
-            if (!isCompleted) {
-                const token = await signOnboardingToken({ userId, role });
-
-                // Set HTTP-only cookie for onboarding session
-                (await cookies()).set("session_token", token, {
-                    httpOnly: true,
-                    secure: process.env.NODE_ENV === "production",
-                    sameSite: "lax",
-                    path: "/",
-                    maxAge: 60 * 60 * 24, // 1 day for onboarding
-                });
-
-                return NextResponse.json({
-                    onboardingRequired: true,
-                });
-            }
-
-            const token = await signSessionJWT({ userId, role, onboardingCompleted: true });
+            // 3. Issue Session JWT with onboarding status
+            const token = await signSessionJWT({ userId, role, onboardingCompleted: isCompleted });
 
             // Set HTTP-only cookie
             (await cookies()).set("session_token", token, {
@@ -75,6 +58,13 @@ export async function POST(request: Request) {
                 path: "/",
                 maxAge: 60 * 60 * 24 * 7, // 7 days
             });
+
+            // Return onboarding status to client
+            if (!isCompleted) {
+                return NextResponse.json({
+                    onboardingRequired: true,
+                });
+            }
 
             return NextResponse.json({
                 success: true,

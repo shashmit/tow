@@ -5,7 +5,9 @@ import { CombinedPersonalDetails } from "./personal-details";
 import { RoleSpecific } from "./role-specific";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { ChevronLeft, ChevronRight, Sparkles, LogOut } from "lucide-react";
+import { logout } from "@/lib/auth/client";
+import { useRouter } from "next/navigation";
 
 const STEP_TITLES = {
     1: "Personal Details",
@@ -18,8 +20,14 @@ const STEP_SUBTITLES = {
 };
 
 export function OnboardingForm() {
-    const { role, loading, submitForm, currentStep, totalSteps, nextStep, prevStep, formData, handleInputChange, subjects, setSubjects, classLevels, setClassLevels } = useOnboarding();
+    const { role, loading, submitForm, currentStep, totalSteps, nextStep, prevStep, formData, setFormData, handleInputChange, subjects, setSubjects, classLevels, setClassLevels } = useOnboarding();
     const isTutor = role === 'tutor';
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        await logout();
+        router.push("/login");
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -33,12 +41,12 @@ export function OnboardingForm() {
     return (
         <div className="h-full flex flex-col">
             {/* Header */}
-            <div className="mb-8 text-center space-y-2">
+            <div className="mb-8 flex justify-between items-center">
                 <motion.div
                     key={currentStep}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="space-y-1"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="space-y-1 text-left"
                 >
                     <h1 className="text-2xl md:text-3xl font-black tracking-tight text-gray-900">
                         {STEP_TITLES[currentStep as keyof typeof STEP_TITLES]}
@@ -47,6 +55,16 @@ export function OnboardingForm() {
                         {STEP_SUBTITLES[currentStep as keyof typeof STEP_SUBTITLES]}
                     </p>
                 </motion.div>
+
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleLogout}
+                    className="text-gray-500 hover:text-red-600 hover:bg-red-50 transition-colors flex items-center gap-2 font-bold"
+                >
+                    <LogOut className="w-4 h-4" />
+                    <span className="hidden sm:inline">Logout</span>
+                </Button>
             </div>
 
             {/* Form Content */}
@@ -65,6 +83,7 @@ export function OnboardingForm() {
                                 <CombinedPersonalDetails
                                     formData={formData}
                                     handleInputChange={handleInputChange}
+                                    setFormData={setFormData}
                                 />
                             )}
                             {currentStep === 2 && (

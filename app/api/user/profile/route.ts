@@ -13,11 +13,18 @@ const profileSchema = z.object({
     // Tutor specific
     experience: z.string().optional(),
     qualification: z.string().optional(),
-    educationMode: z.enum(["hybrid", "physical", "online"]).optional(),
+    educationMode: z.preprocess(
+        (val) => (val === "" || val === null ? undefined : val),
+        z.enum(["hybrid", "physical", "online"]).optional()
+    ),
     // Student specific
-    learningMode: z.enum(["hybrid", "physical", "online"]).optional(),
+    learningMode: z.preprocess(
+        (val) => (val === "" || val === null ? undefined : val),
+        z.enum(["hybrid", "physical", "online"]).optional()
+    ),
     subjects: z.array(z.string()).optional(),
     classLevels: z.array(z.string()).optional(),
+    imageUrl: z.string().optional(),
 });
 
 export async function GET(request: Request) {
@@ -78,6 +85,7 @@ export async function PUT(request: Request) {
                 }),
                 subjects: data.subjects || [],
                 classLevels: data.classLevels || [],
+                imageUrl: data.imageUrl,
             }
         );
 

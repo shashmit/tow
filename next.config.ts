@@ -11,6 +11,18 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "i.pravatar.cc",
       },
+      {
+        protocol: "https",
+        hostname: "cloud.appwrite.io",
+      },
+      {
+        protocol: "https",
+        hostname: "sgp.cloud.appwrite.io",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
     ],
   },
 };

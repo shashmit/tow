@@ -1,4 +1,4 @@
-import { Client, Databases, Users } from "node-appwrite";
+import { Client, Databases, Users, Storage } from "node-appwrite";
 import { env } from "@/lib/env";
 
 export function createAdminClient() {
@@ -13,6 +13,9 @@ export function createAdminClient() {
         },
         get databases() {
             return new Databases(client);
+        },
+        get storage() {
+            return new Storage(client);
         },
     };
 }

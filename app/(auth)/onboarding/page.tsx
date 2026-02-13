@@ -5,6 +5,7 @@ import { OnboardingForm } from "./components/onboarding-form";
 import { PageLoader } from "@/components/ui/page-loader";
 import { useOnboarding } from "./hooks/use-onboarding";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export default function OnboardingPage() {
     return (
@@ -16,6 +17,7 @@ export default function OnboardingPage() {
 
 function OnboardingContentWrapper() {
     const { loading, role } = useOnboarding();
+    const router = useRouter();
 
     return (
         <div className="min-h-screen bg-[#FFFDF8] font-sans">
@@ -43,6 +45,7 @@ function OnboardingContentWrapper() {
                     {/* Content */}
                     <div className="relative z-10 flex flex-col justify-between h-full p-10 text-white">
                         <motion.div
+                            className="flex items-center"
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
@@ -90,12 +93,14 @@ function OnboardingContentWrapper() {
                     {/* Mobile header */}
                     <div className="lg:hidden p-4 flex items-center justify-between border-b border-gray-100">
                         <h2 className="text-xl font-black">Tow</h2>
-                        <span className={`px-3 py-1 rounded-full text-xs font-bold ${role === 'tutor'
-                            ? 'bg-purple-100 text-purple-700'
-                            : 'bg-yellow-100 text-yellow-700'
-                            }`}>
-                            {role === 'tutor' ? 'Tutor' : 'Student'}
-                        </span>
+                        <div className="flex items-center gap-3">
+                            <span className={`px-3 py-1 rounded-full text-xs font-bold ${role === 'tutor'
+                                ? 'bg-purple-100 text-purple-700'
+                                : 'bg-yellow-100 text-yellow-700'
+                                }`}>
+                                {role === 'tutor' ? 'Tutor' : 'Student'}
+                            </span>
+                        </div>
                     </div>
 
                     {/* Form container */}

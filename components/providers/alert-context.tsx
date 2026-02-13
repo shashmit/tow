@@ -13,11 +13,11 @@ export function AlertProvider({ children }: { children: ReactNode }) {
     const [isVisible, setIsVisible] = useState(false);
     const [message, setMessage] = useState("");
     const [type, setType] = useState<AlertType>("info");
-    const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null);
+    const [timerId, setTimerId] = useState<NodeJS.Timeout | number | null>(null);
 
     const showAlert = useCallback((msg: string, alertType: AlertType = "info") => {
         // Clear existing timer if any
-        if (timerId) clearTimeout(timerId);
+        if (timerId) clearTimeout(timerId as any);
 
         setMessage(msg);
         setType(alertType);

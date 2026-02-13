@@ -38,7 +38,7 @@ export async function register(email: string, password: string, role: string) {
 
 export interface SessionInfo {
     authenticated: boolean;
-    isOnboarding?: boolean;
+    onboardingCompleted?: boolean;
     userId?: string;
     role?: string;
 }

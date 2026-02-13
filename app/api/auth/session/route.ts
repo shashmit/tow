@@ -16,12 +16,12 @@ export async function GET() {
         return NextResponse.json({ authenticated: false });
     }
 
-    // Check if it's a full session or just an onboarding token
-    const isOnboarding = payload.type === "onboarding";
+    // Check if onboarding is completed
+    const onboardingCompleted = payload.onboardingCompleted === true;
 
     return NextResponse.json({
         authenticated: true,
-        isOnboarding,
+        onboardingCompleted,
         userId: payload.userId,
         role: payload.role,
     });

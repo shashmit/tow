@@ -52,12 +52,13 @@ export async function proxy(request: NextRequest) {
         return NextResponse.redirect(new URL("/login", request.url));
     }
 
-    if (payload.type === 'onboarding') {
-        // If it's an onboarding token, only allow access to onboarding-related routes
+    if (payload.onboardingCompleted === false) {
+        // If onboarding not completed, only allow access to onboarding-related routes
         const allowedOnboardingPaths = [
             "/onboarding",
             "/api/auth/onboarding",
             "/api/subjects",
+            "/api/upload",
         ];
         const isAllowed = allowedOnboardingPaths.some(p => pathname.startsWith(p));
         if (!isAllowed) {

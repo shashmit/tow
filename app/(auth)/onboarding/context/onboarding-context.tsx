@@ -22,6 +22,7 @@ export interface OnboardingFormData {
     educationMode: string;
     // Student Specific
     learningMode: string;
+    imageUrl?: string;
 }
 
 interface OnboardingContextType {
@@ -80,6 +81,7 @@ function OnboardingProviderContent({ children }: { children: ReactNode }) {
         qualification: "",
         educationMode: "",
         learningMode: "",
+        imageUrl: "",
     });
 
     // Step management
@@ -219,13 +221,14 @@ function OnboardingProviderContent({ children }: { children: ReactNode }) {
                 bio: formData.bio,
                 subjects,
                 classLevels,
+                imageUrl: formData.imageUrl,
             };
 
             // Add role-specific fields only if they have values (now required, but checking value exists)
             if (role === 'tutor') {
                 if (formData.experience) payload.experience = formData.experience;
                 if (formData.qualification) payload.qualification = formData.qualification;
-                payload.educationMode = formData.educationMode;
+                if (formData.educationMode) payload.educationMode = formData.educationMode;
             } else {
                 payload.learningMode = formData.learningMode;
             }

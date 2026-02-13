@@ -22,6 +22,7 @@ const onboardingSchema = z.object({
     subjects: z.array(z.string()).optional(),
     // We'll enforce logic in frontend, but backend accepts array.
     classLevels: z.array(z.string()).optional(),
+    imageUrl: z.string().optional(),
 });
 
 export async function POST(request: Request) {
@@ -64,6 +65,7 @@ export async function POST(request: Request) {
                 }),
                 subjects: data.subjects || [],
                 classLevels: data.classLevels || [],
+                imageUrl: data.imageUrl,
                 onboardingCompleted: true
             }
         );
